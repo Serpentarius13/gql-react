@@ -17,7 +17,7 @@ const noteSchema = new mongoose.Schema(
     },
     favoritedBy: {
       type: Array,
-      ref: "User",
+      ref: "User", 
       default: []
     },
   },
