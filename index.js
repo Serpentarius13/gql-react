@@ -28,7 +28,7 @@ connect();
 const { ApolloServer } = require("apollo-server-express");
 const models = require("./models/models");
 const typeDefs = require("./schema/apollo-schema");
-const resolvers = require("./resolvers/index");
+const resolvers = require("./resolvers/resolvers");
 
 const depthLimit = require("graphql-depth-limit");
 const { createComplexityLimitRule } = require("graphql-validation-complexity");
@@ -64,6 +64,7 @@ const server = new ApolloServer({
     return { models, user };
   },
   validationRules: [depthLimit(5), createComplexityLimitRule(1000)],
+  persistedQueries: false,
 });
 server.start().then((c) => server.applyMiddleware({ app, path: "/api" }));
 
