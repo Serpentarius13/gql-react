@@ -48,12 +48,16 @@ const getUser = (token) => {
 
 //////////////////////////////
 
-const port = process.env.PORT;
+const port = process.env.PORT || 4000;
 
 const app = express();
 
 app.use(helmet());
-app.use(cors());
+app.use(
+  cors({
+    origin: ["https://apollo-server-landing-page.cdn.apollographql.com/"],
+  })
+);
 
 const server = new ApolloServer({
   typeDefs,
